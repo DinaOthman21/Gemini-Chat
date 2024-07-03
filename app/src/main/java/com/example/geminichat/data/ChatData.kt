@@ -32,7 +32,7 @@ object ChatData {
             )
 
         }
-        catch (e:ResponseStoppedException){
+        catch (e:Exception){
             return Chat(
                 prompt= e.message ?: "error",
                 bitmap = null,
@@ -70,7 +70,7 @@ object ChatData {
 
         }
 
-        catch (e:ResponseStoppedException){
+        catch (e:Exception){
             return Chat(
                 prompt= e.message ?: "error",
                 bitmap = null,
