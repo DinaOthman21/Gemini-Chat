@@ -58,6 +58,9 @@ import com.example.geminichat.ui.theme.GeminiChatTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import coil.size.Size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.navigationBarsPadding
+
 
 
 class MainActivity : ComponentActivity() {
@@ -93,6 +96,7 @@ class MainActivity : ComponentActivity() {
                                 .background(MaterialTheme.colorScheme.primary)
                                 .height(55.dp)
                                 .padding(horizontal = 16.dp)
+                                .statusBarsPadding()
                             ) {
                                 Text(
                                     modifier = Modifier.align(Alignment.Center),
@@ -128,7 +132,8 @@ class MainActivity : ComponentActivity() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = paddingValues.calculateTopPadding()),
+                .padding(top = paddingValues.calculateTopPadding())
+                .navigationBarsPadding(),
             verticalArrangement = Arrangement.Bottom
         ) {
             LazyColumn(
