@@ -1,13 +1,10 @@
 package com.example.geminichat
 
-
-
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -30,82 +27,56 @@ import com.example.geminichat.ui.theme.GeminiChatTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
-
 class MainActivity : ComponentActivity() {
 
     private val uriState = MutableStateFlow("")
 
-    private val imagePicker =
-     registerForActivityResult< PickVisualMediaRequest, Uri?>(
-         ActivityResultContracts.PickVisualMedia()
-     ){ uri->
-         uri?.let {
-             uriState.update { uri.toString() }
-         }
-
-
-     }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val imagePicker = registerForActivityResult(
+            ActivityResultContracts.PickVisualMedia()
+        ) { uri: Uri? ->
+            uri?.let {
+                uriState.update { uri.toString() }
+            }
+        }
+
         setContent {
             GeminiChatTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize() ,
+                    modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
                     Scaffold(
                         topBar = {
-                            Box(modifier = Modifier
-                                .fillMaxWidth()
-                                .background(MaterialTheme.colorScheme.primary)
-                                .height(55.dp)
-                                .padding(horizontal = 16.dp)
-                                .statusBarsPadding()
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(MaterialTheme.colorScheme.primary)
+                                    .height(55.dp)
+                                    .padding(horizontal = 16.dp)
+                                    .statusBarsPadding()
                             ) {
                                 Text(
                                     modifier = Modifier.align(Alignment.Center),
                                     text = stringResource(id = R.string.app_name),
                                     fontSize = 19.sp,
                                     color = MaterialTheme.colorScheme.onPrimary
-                                    )
+                                )
                             }
                         },
-
-
+                        content = { paddingValues ->
+                            ChatScreen(
+                                paddingValues = paddingValues,
+                                uriState = uriState,
+                                imagePicker = imagePicker
+                            )
+                        }
                     )
-                    {
-                        ChatScreen(paddingValues = it,
-                            uriState = uriState,
-                            imagePicker = imagePicker)
-                    }
-
-
                 }
-
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
