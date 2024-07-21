@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -73,4 +75,9 @@ dependencies {
 
 
     implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+
+
+
 }
+
+// Allow references to generated code

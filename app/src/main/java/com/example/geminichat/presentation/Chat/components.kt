@@ -13,6 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -64,11 +66,11 @@ fun ModelChatItem(response: String) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(12.dp))
-                .background(Green)
+                .background(Gray)
                 .padding(16.dp),
             text = response,
             fontSize = 17.sp,
-            color = MaterialTheme.colorScheme.onPrimary
+            color = MaterialTheme.colorScheme.primary
         )
 
     }
